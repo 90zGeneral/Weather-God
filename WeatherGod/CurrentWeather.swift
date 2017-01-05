@@ -55,4 +55,21 @@ class CurrentWeather {
         
         return _currentTemp
     }
+    
+    
+    //Download the data. The type for the completed parameter comes from the typealias in the Constants.swift file
+    func downloadWeatherDetails(completed: DownloadComplete) {
+        
+        //Tell Alamofire where to download from
+        let weatherURL = URL(string: currentWeatherURL)!
+        
+        //Alamofire GET Request
+        Alamofire.request(weatherURL).responseJSON { (response) in
+            let result = response.result.value!
+            print(result)
+        }
+        //Tell it to complete
+        completed()
+    }
+    
 }

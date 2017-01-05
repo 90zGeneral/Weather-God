@@ -15,6 +15,9 @@ let longitude = "&lon="
 let appID = "&appid="
 let apiKey = "0bd0ea0097839e2557720ca13df4d640"
 
+//Tell the download function when it's completed
+typealias DownloadComplete = () -> ()
+
 //Prototype url
 let currentWeatherURL = "\(baseURL)\(latitude)7\(longitude)11\(appID)\(apiKey)"
 
