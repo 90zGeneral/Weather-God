@@ -17,6 +17,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var weatherTypeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    //New instance of the Current Weather class
     var currentWeather = CurrentWeather()
     
     
@@ -47,6 +48,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        //Access the downloadWeatherDetails method to make the request when the app loads
         currentWeather.downloadWeatherDetails {
             
             //Setup the UI to load the downloaded data
