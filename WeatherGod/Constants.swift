@@ -1,0 +1,20 @@
+//
+//  Constants.swift
+//  WeatherGod
+//
+//  Created by Roydon Jeffrey on 1/5/17.
+//  Copyright © 2017 Italyte. All rights reserved.
+//
+
+import Foundation
+
+//Global constants accessible throughout the entire app
+let baseURL = "http://api.openweathermap.org/data/2.5/weather?"
+let latitude = "lat="
+let longitude = "&lon="
+let appID = "&appid="
+let apiKey = "0bd0ea0097839e2557720ca13df4d640"
+
+//Prototype url
+let currentWeatherURL = "\(baseURL)\(latitude)7\(longitude)11\(appID)\(apiKey)"
+

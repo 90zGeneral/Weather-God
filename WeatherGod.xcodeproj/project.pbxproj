@@ -15,6 +15,8 @@
 		D5FDAF3E1E1C50D60056E82C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5FDAF3C1E1C50D60056E82C /* LaunchScreen.storyboard */; };
 		D5FDAF491E1C50D60056E82C /* WeatherGodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FDAF481E1C50D60056E82C /* WeatherGodTests.swift */; };
 		D5FDAF541E1C50D60056E82C /* WeatherGodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FDAF531E1C50D60056E82C /* WeatherGodUITests.swift */; };
+		D5FDAF621E1EADCA0056E82C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FDAF611E1EADCA0056E82C /* Constants.swift */; };
+		D5FDAF641E1EB3210056E82C /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FDAF631E1EB3210056E82C /* CurrentWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		D5FDAF4F1E1C50D60056E82C /* WeatherGodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherGodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5FDAF531E1C50D60056E82C /* WeatherGodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherGodUITests.swift; sourceTree = "<group>"; };
 		D5FDAF551E1C50D60056E82C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5FDAF611E1EADCA0056E82C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D5FDAF631E1EB3210056E82C /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		DC143D209C4910EE93317643 /* Pods-WeatherGod.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherGod.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherGod/Pods-WeatherGod.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +131,8 @@
 				D5FDAF3A1E1C50D60056E82C /* Assets.xcassets */,
 				D5FDAF3C1E1C50D60056E82C /* LaunchScreen.storyboard */,
 				D5FDAF3F1E1C50D60056E82C /* Info.plist */,
+				D5FDAF611E1EADCA0056E82C /* Constants.swift */,
+				D5FDAF631E1EB3210056E82C /* CurrentWeather.swift */,
 			);
 			path = WeatherGod;
 			sourceTree = "<group>";
@@ -336,6 +342,8 @@
 			files = (
 				D5FDAF361E1C50D60056E82C /* WeatherVC.swift in Sources */,
 				D5FDAF341E1C50D60056E82C /* AppDelegate.swift in Sources */,
+				D5FDAF641E1EB3210056E82C /* CurrentWeather.swift in Sources */,
+				D5FDAF621E1EADCA0056E82C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

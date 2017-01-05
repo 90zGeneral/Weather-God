@@ -32,6 +32,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    //Set a fixed height for each cell
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
@@ -43,6 +44,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        print(currentWeatherURL)
     }
 
 }
