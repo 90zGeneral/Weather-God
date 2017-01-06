@@ -45,7 +45,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dateLbl.text = currentWeather.date
         cityLbl.text = currentWeather.cityName
         weatherTypeLbl.text = currentWeather.weatherType
-        tempLbl.text = "\(Int(currentWeather.currentTemp))"
+        tempLbl.text = "\(Int(currentWeather.currentTemp))°"
         
         //Select the image name that matches the weather type
         weatherImage.image = UIImage(named: currentWeather.weatherType)
