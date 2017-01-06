@@ -17,8 +17,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var weatherTypeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    //New instance of the Current Weather class
-    var currentWeather = CurrentWeather()
+    //Declare a new varaible of type CurrentWeather
+    var currentWeather: CurrentWeather!
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,6 +40,17 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    //To update the views
+    func updateUI() {
+        dateLbl.text = currentWeather.date
+        cityLbl.text = currentWeather.cityName
+        weatherTypeLbl.text = currentWeather.weatherType
+        tempLbl.text = "\(Int(currentWeather.currentTemp))"
+        
+        //Select the image name that matches the weather type
+        weatherImage.image = UIImage(named: currentWeather.weatherType)
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +59,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        //Access the downloadWeatherDetails method to make the request when the app loads
+        //Instantiate a new CurrentWeather and access the downloadWeatherDetails method to make the request when the app loads
+        currentWeather = CurrentWeather()
         currentWeather.downloadWeatherDetails {
             
             //Setup the UI to load the downloaded data
+            self.updateUI()
         }
     }
 
