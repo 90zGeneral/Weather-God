@@ -58,7 +58,7 @@ class CurrentWeather {
     
     
     //Download the data. The type for the completed parameter comes from the typealias in the Constants.swift file
-    func downloadWeatherDetails(completed: DownloadComplete) {
+    func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         
         //Tell Alamofire where to download from
         let weatherURL = URL(string: currentWeatherURL)!
@@ -98,9 +98,9 @@ class CurrentWeather {
                     }
                 }
             }
+            //Tell it to complete
+            completed()
         }
-        //Tell it to complete
-        completed()
     }
     
 }
