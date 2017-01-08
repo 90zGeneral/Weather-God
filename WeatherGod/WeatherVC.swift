@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,8 +18,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var weatherTypeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    //Declare a new varaible of type CurrentWeather
+    //Declare new varaibles of type CurrentWeather & Forecast
     var currentWeather: CurrentWeather!
+    var forecast: Forecast!
+    
+    //Array of Forecast
+    var forecasts = [Forecast]()
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,6 +56,42 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         weatherImage.image = UIImage(named: currentWeather.weatherType)
     }
     
+    
+    //Downloading forecast data for the tableView
+    func downloadedForecastData(completed: @escaping DownloadComplete) {
+        
+        //Where the forecast data is coming from
+        let forecastDataURL = URL(string: forecastURL)!
+        
+        //Alamofire GET request
+        Alamofire.request(forecastDataURL).responseJSON { (response) in
+            
+            //Grab the value from the response result
+            let result = response.result.value
+            
+            //Cast the json object as a Swift Dictionary for usability
+            if let dict = result as? [String: Any] {
+                
+                //Reach the array that holds the data I want
+                if let list = dict["list"] as? [[String: Any]] {
+                    
+                    //Loop for the temp of each unique day
+                    for obj in list {
+                        
+                        //New instance of Forecast with a dictionary that holds each object in the list array
+                        let newForecast = Forecast(weatherDict: obj)
+                        
+                        //Add to Forecast array
+                        self.forecasts.append(newForecast)
+                        print(obj)
+                    }
+                    
+                }
+            }
+            completed()
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,12 +100,19 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        //New Instance of an empty Forecast
+//        forecast = Forecast(weatherDict: <#T##[String : Any]#>)
+        
         //Instantiate a new CurrentWeather and access the downloadWeatherDetails method to make the request when the app loads
         currentWeather = CurrentWeather()
         currentWeather.downloadWeatherDetails {
             
-            //Setup the UI to load the downloaded data
-            self.updateUI()
+            //Call this method before the UI get updated
+            self.downloadedForecastData {
+                
+                //Setup the UI to load the downloaded data
+                self.updateUI()
+            }
         }
     }
 
