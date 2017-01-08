@@ -64,6 +64,7 @@ class Forecast {
                 let convertingKelvin = (min * (9 / 5) - 459.67)
                 let kelvinToFarenheit = Double(round(10 * convertingKelvin / 10))
                 self._lowTemp = kelvinToFarenheit
+                print("")
                 print(self._lowTemp)
             }
             
@@ -96,11 +97,6 @@ class Forecast {
             //The date is in a Unix standard that needs to be converted
             let unixConvertedDate = Date(timeIntervalSince1970: date!)
             
-            let newDateFormatter = DateFormatter()
-            newDateFormatter.dateStyle = .full
-            newDateFormatter.dateFormat = "EEEE"
-            newDateFormatter.timeStyle = .none
-            
             //Assign the custom dayOfTheWeek method created in the Date extension to _date
             self._date = unixConvertedDate.dayOfTheWeek()
             print(_date)
@@ -115,8 +111,10 @@ extension Date {
     //Find the day of the week
     func dayOfTheWeek() -> String {
         
-        //A date formatter
+        //A date formatter to determine its presentation
         let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full      //Get the full date including the day of the week
+        dateFormatter.timeStyle = .none      //Omit the default timestamp
         
         //This is how the day of the week is represented
         dateFormatter.dateFormat = "EEEE"
