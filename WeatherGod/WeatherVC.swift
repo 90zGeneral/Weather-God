@@ -25,19 +25,35 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //Array of Forecast
     var forecasts = [Forecast]()
     
-    
+    //How many sections should the tableView have?
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    //How many rows should be in the section?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return forecasts.count
     }
     
+    //Setting up the content for each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastCell", for: indexPath)
         
-        return cell
+        //Cast cell as a ForecastCell for accessibilty to its configureCell method
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastCell", for: indexPath) as? ForecastCell {
+            
+            //Assign each Forecast in the array to each cell created in the tableView
+            let eachForecast = forecasts[indexPath.row]
+            
+            //Call the configureCell method on the cell and pass in a Forecast from the array for each row in the tableView
+            cell.configureCell(forecast: eachForecast)
+            
+            //Then return the cell
+            return cell
+            
+        }else {
+            
+            return ForecastCell()
+        }
     }
     
     //Set a fixed height for each cell
@@ -81,10 +97,18 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         //New instance of Forecast with a dictionary that holds each object in the list array
                         let newForecast = Forecast(weatherDict: obj)
                         
-                        //Add to Forecast array
-                        self.forecasts.append(newForecast)
+                        //Add no more than 8 items to the Forecast array
+                        if self.forecasts.count < 8 {
+                            self.forecasts.append(newForecast)
+                        }
                         print(obj)
                     }
+                    
+                    //Remove the 1st Forecast so that the 1st cell displays the following day and NOT the current day
+                    self.forecasts.remove(at: 0)
+                    
+                    //Reload the tableView with the data
+                    self.tableView.reloadData()
                     
                 }
             }
