@@ -59,6 +59,13 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //Call function for location authorization status
+        locationAuthStatus()
+    }
+    
     //To authorize your location status
     func locationAuthStatus() {
         
@@ -67,6 +74,11 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
             
             //Store the location determined by locationManager as the currentLocation
             currentLocation = locationManager.location
+            
+            //Assign the lat & long coordinates from currentLocation  to the lat & long properties of the Location class
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            print(Location.sharedInstance.latitude, Location.sharedInstance.longitude)
             
         }else {
             
