@@ -18,9 +18,9 @@ let apiKey = "0bd0ea0097839e2557720ca13df4d640"
 //Tell the download function when it's completed
 typealias DownloadComplete = () -> ()
 
-//Prototype url
-let currentWeatherURL = "\(baseURL)\(latitude)7\(longitude)11\(appID)\(apiKey)"
+//The weather URL based on the user's location. The location coordinates MUST be unwrapped
+let currentWeatherURL = "\(baseURL)\(latitude)\(Location.sharedInstance.latitude!)\(longitude)\(Location.sharedInstance.longitude!)\(appID)\(apiKey)"
 
-
-let forecastURL = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=7&lon=11&cnt=10&mode=json&appid=0bd0ea0097839e2557720ca13df4d640"
+//The weather forecast URL based on the user's location. The location coordinates MUST be unwrapped
+let forecastURL = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&cnt=10&mode=json&appid=0bd0ea0097839e2557720ca13df4d640"
 

@@ -43,20 +43,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         tableView.delegate = self
         tableView.dataSource = self
         
-        //New Instance of an empty Forecast
-        //        forecast = Forecast(weatherDict: <#T##[String : Any]#>)
-        
-        //Instantiate a new CurrentWeather and access the downloadWeatherDetails method to make the request when the app loads
+        //Instantiate a new CurrentWeather
         currentWeather = CurrentWeather()
-        currentWeather.downloadWeatherDetails {
-            
-            //Call this method before the UI get updated
-            self.downloadedForecastData {
-                
-                //Setup the UI to load the downloaded data
-                self.updateUI()
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -79,6 +67,17 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
             print(Location.sharedInstance.latitude, Location.sharedInstance.longitude)
+            
+            //Access the downloadWeatherDetails method to make the request once the location is determined
+            currentWeather.downloadWeatherDetails {
+                
+                //Call this method before the UI get updated
+                self.downloadedForecastData {
+                    
+                    //Setup the UI to load the downloaded data
+                    self.updateUI()
+                }
+            }
             
         }else {
             
