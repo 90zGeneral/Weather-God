@@ -91,7 +91,7 @@
                                 <rect key="frame" x="0.0" y="250" width="320" height="318"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="80" id="50k-9O-A7h">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ForecastCell" rowHeight="80" id="50k-9O-A7h" customClass="ForecastCell" customModule="WeatherGod" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="50k-9O-A7h" id="SgU-CE-4aI">
@@ -99,19 +99,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJg-sT-Gya">
-                                                    <rect key="frame" x="73" y="19" width="234" height="44"/>
+                                                    <rect key="frame" x="73" y="19" width="234" height="43.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="G9T-fm-f88">
-                                                            <rect key="frame" x="0.0" y="0.0" width="198" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="198" height="43.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imK-do-ulZ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="198" height="23.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunny" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqH-gh-mfw">
-                                                                    <rect key="frame" x="0.0" y="24" width="198" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="23.5" width="198" height="20"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -122,16 +122,16 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="HRo-Kb-zJo">
-                                                            <rect key="frame" x="198" y="0.0" width="36" height="44"/>
+                                                            <rect key="frame" x="198" y="0.0" width="36" height="43.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="91°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VZ-wg-eED">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="36" height="23.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="77°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyG-7V-cmN">
-                                                                    <rect key="frame" x="0.0" y="24" width="36" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="23.5" width="36" height="20"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -164,6 +164,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="forecastDay" destination="imK-do-ulZ" id="ISb-Vj-dGZ"/>
+                                            <outlet property="forecastHigh" destination="3VZ-wg-eED" id="cW8-1Y-VeC"/>
+                                            <outlet property="forecastImage" destination="LtQ-2c-DaC" id="c40-md-qAt"/>
+                                            <outlet property="forecastLow" destination="eyG-7V-cmN" id="CYR-3S-7gd"/>
+                                            <outlet property="forecastType" destination="DqH-gh-mfw" id="Lps-BD-gdo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
