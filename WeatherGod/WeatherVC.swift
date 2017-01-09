@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import CoreLocation     //Apple Framework to access a device's current longitude & laitude location
 import Alamofire
 
-class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var tempLbl: UILabel!
@@ -18,12 +19,64 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var weatherTypeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    //Location Manager
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation!
+    
     //Declare new varaibles of type CurrentWeather & Forecast
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
     
     //Array of Forecast
     var forecasts = [Forecast]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        //Allow the locationManager to find your exact location when the app is in use and monitor any significant changes in your location
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        //New Instance of an empty Forecast
+        //        forecast = Forecast(weatherDict: <#T##[String : Any]#>)
+        
+        //Instantiate a new CurrentWeather and access the downloadWeatherDetails method to make the request when the app loads
+        currentWeather = CurrentWeather()
+        currentWeather.downloadWeatherDetails {
+            
+            //Call this method before the UI get updated
+            self.downloadedForecastData {
+                
+                //Setup the UI to load the downloaded data
+                self.updateUI()
+            }
+        }
+    }
+    
+    //To authorize your location status
+    func locationAuthStatus() {
+        
+        //Check if user's permission was already granted and proceed
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            
+            //Store the location determined by locationManager as the currentLocation
+            currentLocation = locationManager.location
+            
+        }else {
+            
+            //Ask the user's permission to access their location
+            locationManager.requestWhenInUseAuthorization()
+            
+            //Call this function again
+            locationAuthStatus()
+        }
+    }
     
     //How many sections should the tableView have?
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,30 +168,5 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             completed()
         }
     }
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        //New Instance of an empty Forecast
-//        forecast = Forecast(weatherDict: <#T##[String : Any]#>)
-        
-        //Instantiate a new CurrentWeather and access the downloadWeatherDetails method to make the request when the app loads
-        currentWeather = CurrentWeather()
-        currentWeather.downloadWeatherDetails {
-            
-            //Call this method before the UI get updated
-            self.downloadedForecastData {
-                
-                //Setup the UI to load the downloaded data
-                self.updateUI()
-            }
-        }
-    }
-
 }
 
