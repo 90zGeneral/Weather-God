@@ -23,7 +23,14 @@ class ForecastCell: UITableViewCell {
         forecastHigh.text = "\(forecast.highTemp)"
         forecastType.text = forecast.weatherType
         forecastDay.text = forecast.date
-        forecastImage.image = UIImage(named: forecast.weatherType)
+        
+        //Set the forecast image for clear to be the original image for clear and not the mini
+        if forecastType.text == "Clear" {
+            forecastImage.image = UIImage(named: forecast.weatherType)
+            
+        }else {
+            forecastImage.image = UIImage(named: forecast.weatherType + " Mini")
+        }
     }
 
 }

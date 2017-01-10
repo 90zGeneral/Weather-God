@@ -18,9 +18,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var weatherTypeLbl: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var theSky: UIView!
     
     //Location Manager
-    let locationManager = CLLocationManager()
+    let locationManager: CLLocationManager! = CLLocationManager()
     var currentLocation: CLLocation!
     
     //Declare new varaibles of type CurrentWeather & Forecast
@@ -45,6 +46,20 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         
         //Instantiate a new CurrentWeather
         currentWeather = CurrentWeather()
+        
+        //To set The Sky's background depending on the weather type
+        if weatherTypeLbl.text == "Clear" {
+            theSky.backgroundColor = UIColor(red: 0.00, green: 0.30, blue: 1.00, alpha: 1.0)
+            
+        }else if weatherTypeLbl.text == "Clouds" || weatherTypeLbl.text == "Snow" {
+            theSky.backgroundColor = UIColor(red: 0.50, green: 0.50, blue: 0.50, alpha: 1.0)
+            
+        }else if weatherTypeLbl.text == "Thunderstorm" || weatherTypeLbl.text == "Rain" {
+            theSky.backgroundColor = UIColor(red: 0.20, green: 0.20, blue: 0.20, alpha: 1.0)
+            
+        }else if weatherTypeLbl.text == "Partially Cloudy" {
+            theSky.backgroundColor = UIColor(red: 0.00, green: 0.40, blue: 0.60, alpha: 1.0)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +74,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         
         //Check if user's permission was already granted and proceed
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            
+
             //Store the location determined by locationManager as the currentLocation
             currentLocation = locationManager.location
             
