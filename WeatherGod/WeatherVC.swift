@@ -51,8 +51,11 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         if weatherTypeLbl.text == "Clear" {
             theSky.backgroundColor = UIColor(red: 0.00, green: 0.30, blue: 1.00, alpha: 1.0)
             
-        }else if weatherTypeLbl.text == "Clouds" || weatherTypeLbl.text == "Snow" || weatherTypeLbl.text == "Haze" {
-            theSky.backgroundColor = UIColor(red: 0.50, green: 0.50, blue: 0.50, alpha: 1.0)
+        }else if  weatherTypeLbl.text == "Mist" || weatherTypeLbl.text == "Haze" {
+            theSky.backgroundColor = UIColor(red: 0.70, green: 0.70, blue: 0.70, alpha: 1.0)
+            
+        }else if weatherTypeLbl.text == "Clouds" || weatherTypeLbl.text == "Snow" {
+            theSky.backgroundColor = UIColor(red: 0.40, green: 0.40, blue: 0.40, alpha: 1.0)
             
         }else if weatherTypeLbl.text == "Thunderstorm" || weatherTypeLbl.text == "Rain" {
             theSky.backgroundColor = UIColor(red: 0.20, green: 0.20, blue: 0.20, alpha: 1.0)
@@ -149,7 +152,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         
         //Select the image name that matches the weather type
         if weatherTypeLbl.text == "Haze" {
-            weatherImage.image = UIImage(named: "Clouds")
+            weatherImage.image = UIImage(named: "Mist")
         }else {
             weatherImage.image = UIImage(named: currentWeather.weatherType)
         }
