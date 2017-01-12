@@ -25,7 +25,10 @@ class ForecastCell: UITableViewCell {
         forecastDay.text = forecast.date
         
         //Set the forecast image for clear to be the original image for clear and not the mini
-        if forecastType.text == "Clear" {
+        if forecastType.text == "Clear" || forecastType.text == "Thunderstorm" {
+            forecastImage.image = UIImage(named: forecast.weatherType)
+            
+        }else if forecastType.text == "Snow" || forecastType.text == "Partially Cloudy" {
             forecastImage.image = UIImage(named: forecast.weatherType)
             
         }else {
