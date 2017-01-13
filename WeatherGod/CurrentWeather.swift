@@ -17,6 +17,8 @@ class CurrentWeather {
     private var _currentTemp: Double!
     private var _sunrise: String!
     private var _sunset: String!
+    private var _humidity: Int!
+    private var _windSpeed: Double!
     
     //Getters
     var cityName: String {
@@ -65,6 +67,22 @@ class CurrentWeather {
         }
         
         return _currentTemp
+    }
+    
+    var humidity: Int {
+        if _humidity == nil {
+            _humidity = 0
+        }
+        
+        return _humidity
+    }
+    
+    var windSpeed: Double {
+        if _windSpeed == nil {
+            _windSpeed = 0.0
+        }
+        
+        return _windSpeed
     }
     
     var sunrise: String {
@@ -122,14 +140,30 @@ class CurrentWeather {
                 }
                 
                 //To get the current temperature
-                if let dictMain = dict["main"] as? [String: Any] {
-                    if let temp = dictMain["temp"] as? Double {
+                if let dictMain1 = dict["main"] as? [String: Any] {
+                    if let temp = dictMain1["temp"] as? Double {
                         
                         //Convert the temperature from Kelvin measurement system to Farenheit
                         let convertingKelvin = (temp * (9 / 5) - 459.67)
                         let kelvinToFarenheit = Double(round(10 * convertingKelvin / 10))
                         self._currentTemp = kelvinToFarenheit
                         print(self._currentTemp)
+                    }
+                }
+                
+                //To get the humidity level
+                if let dictMain2 = dict["main"] as? [String: Any] {
+                    if let humidity = dictMain2["humidity"] as? Int {
+                        self._humidity = humidity
+                        print(self._humidity)
+                    }
+                }
+                
+                //To get the wind speed
+                if let wind = dict["wind"] as? [String: Any] {
+                    if let speed = wind["speed"] as? Double {
+                        self._windSpeed = speed
+                        print(self._windSpeed)
                     }
                 }
                 
