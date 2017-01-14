@@ -143,7 +143,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource, C
         
         //To set The Sky's background depending on the weather type
         if weatherTypeLbl.text == "Clear" {
-            theSky.backgroundColor = UIColor(red: 0.00, green: 0.30, blue: 1.00, alpha: 1.0)
+            theSky.backgroundColor = UIColor(red: 0.00, green: 0.60, blue: 1.00, alpha: 1.0)
             
         }else if  weatherTypeLbl.text == "Mist" || weatherTypeLbl.text == "Haze" {
             theSky.backgroundColor = UIColor(red: 0.70, green: 0.70, blue: 0.70, alpha: 1.0)
