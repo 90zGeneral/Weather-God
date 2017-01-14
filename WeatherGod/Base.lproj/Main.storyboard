@@ -203,10 +203,10 @@
             </objects>
             <point key="canvasLocation" x="31.875" y="36.971830985915496"/>
         </scene>
-        <!--View Controller-->
+        <!--DetailsVC-->
         <scene sceneID="cgT-Nb-fxW">
             <objects>
-                <viewController id="y6j-eL-ToH" sceneMemberID="viewController">
+                <viewController id="y6j-eL-ToH" customClass="DetailsVC" customModule="WeatherGod" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ROn-8q-9kP"/>
                         <viewControllerLayoutGuide type="bottom" id="kPm-Ae-tL1"/>
@@ -323,6 +323,14 @@
                             <constraint firstItem="5i4-LY-YCy" firstAttribute="top" secondItem="ROn-8q-9kP" secondAttribute="bottom" constant="8" id="HDn-iF-s5B"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="humidity" destination="Wee-dy-Br2" id="RqG-XE-a4z"/>
+                        <outlet property="navBar" destination="5i4-LY-YCy" id="J0P-zg-keC"/>
+                        <outlet property="sunrise" destination="isA-hN-ZDz" id="pee-ua-xDk"/>
+                        <outlet property="sunset" destination="b0f-73-7An" id="yNH-Xb-YaL"/>
+                        <outlet property="weatherDescription" destination="LRK-se-wQb" id="XKf-BO-4MT"/>
+                        <outlet property="windSpeed" destination="92X-1w-5we" id="gRf-ut-eGk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59V-UL-DG7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
